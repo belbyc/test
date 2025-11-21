@@ -7,25 +7,35 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model cats {
-  id             String    @id @default(auto()) @map("_id") @db.ObjectId
-  adoptionDate   DateTime? @db.Date
-  birthDate      DateTime? @db.Date
-  breed          String?
-  declawed       Boolean?
-  description    String?
-  fosterDate     DateTime? @db.Date
-  fosterDuration Int?
-  location       String?
-  name           String?
-  neutered       Boolean?
-  sex            String?
-  primaryColor   String?
-  secondaryColor String?
-  playfulness    Int?
-  appetite       Int?
-  microchip      Int?
-  isAdopted      Boolean?
-  food           String?
-  imageUrl       String?
+model StudySpot {
+  id                  String    @id @default(auto()) @map("_id") @db.ObjectId
+  imageUrl            String?
+  name                String
+  address             String
+  spotType            String
+  hours               String?
+  phoneNumber         String?
+  links               String?   // JSON array of URLs
+  hasWifi             Boolean?
+  hasOutlets          Boolean?
+  hasIndoorSeating    Boolean?
+  hasOutdoorSeating   Boolean?
+  hasRestroom         Boolean?
+  parkingType         String?   // "free", "paid", or null
+  acceptsCreditCard   Boolean?
+  reviews             Review[]
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+}
+
+model Review {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  imageUrl    String?
+  rating      Int       // 1-5
+  priceRange  String    // "$", "$$", "$$$"
+  reviewText  String
+  reviewDate  DateTime  @db.Date
+  studySpot   StudySpot @relation(fields: [studySpotId], references: [id], onDelete: Cascade)
+  studySpotId String    @db.ObjectId
+  createdAt   DateTime  @default(now())
 }

@@ -254,7 +254,17 @@ const renderItem = (item) => {
     div.setAttribute('data-id', item.id)
     div.setAttribute('data-spottype', item.spotType.toLowerCase())
 
-    const imageURL = item.imageUrl || 'assets/placeholder.jpg'
+    // Map spot types to their placeholder images
+    const placeholderMap = {
+        'cafe': 'assets/cafe.jpg',
+        'library': 'assets/library.jpg',
+        'park': 'assets/park.jpg',
+        'co-working space': 'assets/co-work.jpg',
+        'other': 'assets/other.jpg'
+    }
+    
+    const placeholder = placeholderMap[item.spotType.toLowerCase()] || 'assets/other.jpg'
+    const imageURL = item.imageUrl || placeholder
     const imageHTML = 
         `<div class="item-image-area" style="background: url(${imageURL});">
             <div class="item-image-container">

@@ -130,6 +130,7 @@
             <small class="validation">Name is required</small>
           </fieldset>
 
+          <fieldset>
             <label for="address">Address</label>
             <input
               required
@@ -140,7 +141,9 @@
               autocomplete="off"
             />
             <small>Country: Canada</small>
+          </fieldset>
 
+          <fieldset>
             <label for="spotType">Type of Spot</label>
             <select
               required
@@ -177,7 +180,9 @@
               placeholder="e.g. (555) 123-4567"
               autocomplete="off"
             />
+          </fieldset>
 
+          <fieldset>
             <label for="linksInput">Add Links</label>
             <small>Website, social media, etc.</small>
             <div style="display: flex; gap: 10px; margin-bottom: 10px;">
@@ -192,9 +197,9 @@
             <div id="linksContainer"></div>
           </fieldset>
 
-          <!-- FEATURES -->
+          <!-- AMENITIES -->
           <fieldset>
-            <legend>Features</legend>
+            <legend>Amenities</legend>
             
             <label for="hasWifi">
               <input
@@ -303,13 +308,13 @@
   </main>
 
   <section id="intro">
-    <h3>About Study Spot Reviews</h3>
-    <p>Welcome to Study Spot Reviews! This platform helps students and professionals find the best places to study in their area. Share reviews, ratings, and photos of your favorite study locations to help others discover great spots.</p>
+    <h3>About Study Spots</h3>
+    <p>Welcome to Study Spots! This platform helps students and professionals find the best places to study in their area. Share your favorite study locations with photos and details to help others discover great spots.</p>
     <p>Features:</p>
     <ul>
       <li>Create and manage study spot listings</li>
-      <li>Leave detailed reviews with ratings and photos</li>
-      <li>Filter by spot type, amenities, and more</li>
+      <li>Upload photos of study locations</li>
+      <li>Filter by spot type and amenities</li>
       <li>Find the perfect place to study</li>
     </ul>
   </section>
@@ -325,6 +330,8 @@
   ></script>
 
   <script src="upload.js"></script>
+
+  <!-- Removed: <script src="reviews.js"></script> -->
 
 </body>
 

@@ -117,7 +117,7 @@ button.cancel:hover {
 
 /* Dialog styling */
 dialog {
-    max-width: 60rem;
+    max-width: 40rem;
     width: 90%;
     max-height: 90vh;
     padding: 0;
@@ -179,22 +179,52 @@ dialog::backdrop {
 }
 
 form {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    width: 100%;
 }
 
 fieldset {
     display: flex;
     flex-direction: column;
-    align-items: start;
-    margin-bottom: 1rem;
+    align-items: stretch;
+    margin-bottom: 0.5rem;
     border: none;
 }
 
-fieldset:has(textarea) {
+/* Upload fieldset spans full width */
+.upload-fieldset {
+    grid-column: 1 / -1;
+}
+
+/* Basic Info section spans full width */
+fieldset:has(select[name="spotType"]) {
+    grid-column: 1 / -1;
+}
+
+/* Address spans full width */
+fieldset:has(input[name="address"]) {
+    grid-column: 1 / -1;
     width: 100%;
+}
+
+/* Name spans full width */
+fieldset:has(input[name="name"]) {
+    grid-column: 1 / -1;
+    width: 100%;
+}
+
+/* Contact section */
+fieldset:has(input[name="hours"]),
+fieldset:has(input[name="phoneNumber"]),
+fieldset:has(#linksInput) {
+    grid-column: 1 / -1;
+}
+
+/* Features section */
+fieldset:has(input[name="hasWifi"]) {
+    grid-column: 1 / -1;
 }
 
 legend {
@@ -208,6 +238,17 @@ textarea {
 
 fieldset:has(input[type=checkbox]) {
     gap: 0.5rem;
+}
+
+/* Regular labels aligned left and above inputs */
+fieldset > label:not(:has(input[type=radio])):not(:has(input[type=checkbox])) {
+    text-align: left;
+    margin-bottom: 0.25rem;
+}
+
+fieldset > small {
+    text-align: left;
+    margin-bottom: 0.5rem;
 }
 
 /* layout checkboxes and radio buttons horizontally */

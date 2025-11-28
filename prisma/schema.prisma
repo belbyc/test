@@ -23,19 +23,6 @@ model StudySpot {
   hasRestroom         Boolean?
   parkingType         String?   // "free", "paid", or null
   acceptsCreditCard   Boolean?
-  reviews             Review[]
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt
-}
-
-model Review {
-  id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  imageUrl    String?
-  rating      Int       // 1-5
-  priceRange  String    // "$", "$$", "$$$"
-  reviewText  String
-  reviewDate  DateTime  @db.Date
-  studySpot   StudySpot @relation(fields: [studySpotId], references: [id], onDelete: Cascade)
-  studySpotId String    @db.ObjectId
-  createdAt   DateTime  @default(now())
 }

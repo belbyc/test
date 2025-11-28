@@ -282,22 +282,14 @@ const renderItem = (item) => {
         <div class="item-actions">
             <button class="edit-btn">Edit</button>
             <button class="delete-btn">Delete</button>
-            <button class="review-btn">Leave Review</button>
         </div>
     `
     div.innerHTML = DOMPurify.sanitize(template)
 
     div.querySelector('.edit-btn').addEventListener('click', () => editItem(item))
     div.querySelector('.delete-btn').addEventListener('click', () => deleteItem(item.id))
-    div.querySelector('.review-btn').addEventListener('click', () => openReviewForm(item.id, item.name))
 
     return div
-}
-
-// Open review form (placeholder for now)
-const openReviewForm = (spotId, spotName) => {
-    console.log('Opening review form for:', spotName)
-    alert('Review form coming soon for: ' + spotName)
 }
 
 // fetch items from API endpoint and populate the content div

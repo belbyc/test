@@ -69,20 +69,14 @@ const getFormData = () => {
         }
     })
 
-    // Handle parking checkboxes separately
+    // Handle parking checkboxes separately - convert to schema fields
     const freeParking = myForm.querySelector('input[name="freeParking"]')
     const paidParking = myForm.querySelector('input[name="paidParking"]')
     const noParking = myForm.querySelector('input[name="noParking"]')
 
-    if (freeParking && freeParking.checked) {
-        json.parkingType = 'free'
-    } else if (paidParking && paidParking.checked) {
-        json.parkingType = 'paid'
-    } else if (noParking && noParking.checked) {
-        json.parkingType = 'none'
-    } else {
-        json.parkingType = null
-    }
+    json.hasFreeParking = freeParking && freeParking.checked ? true : false
+    json.hasPaidParking = paidParking && paidParking.checked ? true : false
+    json.hasNoParking = noParking && noParking.checked ? true : false
 
     // Remove individual parking checkbox fields from json
     delete json.freeParking
@@ -306,8 +300,8 @@ const renderItem = (item) => {
             ${item.hasOutdoorSeating ? '<span class="feature">🌳 Outdoor Seating</span>' : ''}
             ${item.hasRestroom ? '<span class="feature">🚻 Restroom</span>' : ''}
             ${item.acceptsCreditCard ? '<span class="feature">💳 Credit Card</span>' : ''}
-            ${item.parkingType === 'free' ? '<span class="feature">🅿️ Free Parking</span>' : ''}
-            ${item.parkingType === 'paid' ? '<span class="feature">🅿️ Paid Parking</span>' : ''}
+            ${item.hasFreeParking ? '<span class="feature">🅿️ Free Parking</span>' : ''}
+            ${item.hasPaidParking ? '<span class="feature">🅿️ Paid Parking</span>' : ''}
         </div>
 
         <div class="item-details-hidden">

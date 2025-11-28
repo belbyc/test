@@ -3,30 +3,13 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta
-    name="viewport"
-    content="width=device-width initial-scale=1"
-  />
+  <meta name="viewport" content="width=device-width initial-scale=1"/>
 
   <title>Study Spot Reviews</title>
 
-  <link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
-  >
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  >
-  <link
-    href="https://fonts.googleapis.com/css2?family=Jost:wght@100..900&display=swap"
-    rel="stylesheet"
-  >
-  <link
-    rel="stylesheet"
-    href="style.css"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.typekit.net/zpp1eal.css">
+  <link rel="stylesheet" href="style.css"/>
 
   <!--  DOMPurify cleans up HTML to prevent XSS attacks
   https://www.jsdelivr.com/package/npm/dompurify  -->
@@ -118,7 +101,7 @@
           <fieldset>
             <legend>Basic Info</legend>
             
-            <label for="name">Name of Place</label>
+            <label for="name">Name of Spot</label>
             <input
               required
               type="text"
@@ -128,9 +111,7 @@
               autocomplete="off"
             />
             <small class="validation">Name is required</small>
-          </fieldset>
 
-          <fieldset>
             <label for="address">Address</label>
             <input
               required
@@ -141,9 +122,7 @@
               autocomplete="off"
             />
             <small>Country: Canada</small>
-          </fieldset>
 
-          <fieldset>
             <label for="spotType">Type of Spot</label>
             <select
               required
@@ -168,7 +147,7 @@
               type="text"
               name="hours"
               id="hours"
-              placeholder="e.g. Mon-Fri: 7AM-6PM, Sat: 8AM-5PM"
+              placeholder="e.g. Mon-Fri: 7AM-6PM, Sat: 8AM-5PM, Sun: Closed"
               autocomplete="off"
             />
 
@@ -180,9 +159,7 @@
               placeholder="e.g. (555) 123-4567"
               autocomplete="off"
             />
-          </fieldset>
-
-          <fieldset>
+        
             <label for="linksInput">Add Links</label>
             <small>Website, social media, etc.</small>
             <div style="display: flex; gap: 10px; margin-bottom: 10px;">
@@ -255,31 +232,27 @@
               <span>Accepts Credit Card</span>
             </label>
 
-            <label>Parking</label>
             <label for="freeParking">
               <input
-                type="radio"
+                type="checkbox"
                 id="freeParking"
-                name="parkingType"
-                value="free"
+                name="freeParking"
               />
               <span>Free Parking</span>
             </label>
             <label for="paidParking">
               <input
-                type="radio"
+                type="checkbox"
                 id="paidParking"
-                name="parkingType"
-                value="paid"
+                name="paidParking"
               />
               <span>Paid Parking</span>
             </label>
             <label for="noParking">
               <input
-                type="radio"
+                type="checkbox"
                 id="noParking"
-                name="parkingType"
-                value="none"
+                name="noParking"
               />
               <span>No Parking</span>
             </label>
@@ -303,11 +276,11 @@
   </dialog>
 
   <main>
-    <h2>� Study Spots</h2>
+    <h2>Study Spots</h2>
     <section id="contentArea"></section>
   </main>
 
-  <section id="intro">
+  <!-- <section id="intro">
     <h3>About Study Spots</h3>
     <p>Welcome to Study Spots! This platform helps students and professionals find the best places to study in their area. Share your favorite study locations with photos and details to help others discover great spots.</p>
     <p>Features:</p>
@@ -317,11 +290,11 @@
       <li>Filter by spot type and amenities</li>
       <li>Find the perfect place to study</li>
     </ul>
-  </section>
+  </section> -->
 
   <footer>
-    Created by <a href="https://nsitu.ca">Harold Sikkema</a> in the context of
-    Systems Design in the Interaction Design program at Sheridan College.
+    <!-- Created by <a href="https://nsitu.ca">Harold Sikkema</a> in the context of
+    Systems Design in the Interaction Design program at Sheridan College. -->
   </footer>
 
   <script

@@ -21,7 +21,9 @@ model StudySpot {
   hasIndoorSeating    Boolean?
   hasOutdoorSeating   Boolean?
   hasRestroom         Boolean?
-  parkingType         String?   // "free", "paid", or null
+  hasFreeParking      Boolean?
+  hasPaidParking      Boolean?
+  hasNoParking        Boolean?
   acceptsCreditCard   Boolean?
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt

@@ -62,10 +62,32 @@ const getFormData = () => {
     const formData = new FormData(myForm)
     const json = Object.fromEntries(formData)
 
-    // Handle checkboxes and convert to boolean
+    // Handle checkboxes and convert to boolean (skip parking checkboxes)
     myForm.querySelectorAll('input[type="checkbox"]').forEach(el => {
-        json[el.name] = el.checked
+        if (el.name !== 'freeParking' && el.name !== 'paidParking' && el.name !== 'noParking') {
+            json[el.name] = el.checked
+        }
     })
+
+    // Handle parking checkboxes separately
+    const freeParking = myForm.querySelector('input[name="freeParking"]')
+    const paidParking = myForm.querySelector('input[name="paidParking"]')
+    const noParking = myForm.querySelector('input[name="noParking"]')
+
+    if (freeParking && freeParking.checked) {
+        json.parkingType = 'free'
+    } else if (paidParking && paidParking.checked) {
+        json.parkingType = 'paid'
+    } else if (noParking && noParking.checked) {
+        json.parkingType = 'none'
+    } else {
+        json.parkingType = null
+    }
+
+    // Remove individual parking checkbox fields from json
+    delete json.freeParking
+    delete json.paidParking
+    delete json.noParking
 
     // Handle links from the array
     json.links = linksField.value
@@ -228,6 +250,7 @@ const renderItem = (item) => {
     const div = document.createElement('div')
     div.classList.add('item-card')
     div.setAttribute('data-id', item.id)
+    div.setAttribute('data-spottype', item.spotType.toLowerCase())
 
     const imageHTML = item.imageUrl ?
         `<div class="item-image-area" style="background: url(${item.imageUrl});">
@@ -262,8 +285,6 @@ const renderItem = (item) => {
         
         <div class="item-info">
             <p><strong>📍 Address:</strong> ${item.address}</p>
-            ${item.hours ? `<p><strong>⏰ Hours:</strong> ${item.hours}</p>` : ''}
-            ${item.phoneNumber ? `<p><strong>📞 Phone:</strong> ${item.phoneNumber}</p>` : ''}
         </div>
         
         <div class="item-features">
@@ -277,14 +298,35 @@ const renderItem = (item) => {
             ${item.parkingType === 'paid' ? '<span class="feature">🅿️ Paid Parking</span>' : ''}
         </div>
 
-        ${linksHTML}
+        <div class="item-details-hidden">
+            ${item.hours ? `<p><strong>⏰ Hours:</strong> ${item.hours}</p>` : ''}
+            ${item.phoneNumber ? `<p><strong>📞 Phone:</strong> ${item.phoneNumber}</p>` : ''}
+            ${linksHTML}
+        </div>
 
-        <div class="item-actions">
+        <button class="more-details-btn">More Details</button>
+
+        <div class="item-footer">
+            <div class="item-timestamps">
+                <small>Created: ${new Date(item.createdAt).toLocaleDateString()}</small>
+                <small>Updated: ${new Date(item.updatedAt).toLocaleDateString()}</small>
+            </div>
+            <div class="item-actions">
             <button class="edit-btn">Edit</button>
             <button class="delete-btn">Delete</button>
         </div>
+        </div>
     `
     div.innerHTML = DOMPurify.sanitize(template)
+
+    // Add expand/collapse functionality
+    const moreDetailsBtn = div.querySelector('.more-details-btn')
+    const detailsHidden = div.querySelector('.item-details-hidden')
+    
+    moreDetailsBtn.addEventListener('click', () => {
+        detailsHidden.classList.toggle('expanded')
+        moreDetailsBtn.textContent = detailsHidden.classList.contains('expanded') ? 'Less Details' : 'More Details'
+    })
 
     div.querySelector('.edit-btn').addEventListener('click', () => editItem(item))
     div.querySelector('.delete-btn').addEventListener('click', () => deleteItem(item.id))

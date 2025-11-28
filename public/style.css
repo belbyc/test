@@ -4,14 +4,27 @@ body {
     width: 100%;
     margin: 0;
     text-align: center;
-    font-family: "Jost", sans-serif;
+    font-family: "Cabin", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(238, 227, 144)
+    background-color: white;
+}
+
+/* Typekit font for headings */
+h1, h2, .item-card h3 {
+    font-family: "rl-horizon", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+main {
+    padding: 0 2rem;
+    max-width: 1400px;
+    width: 100%;
 }
 
 
@@ -104,14 +117,23 @@ button.cancel:hover {
 
 #contentArea {
     display: grid;
-    grid-template-columns: auto auto;
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding: 0 6rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Responsive layout for smaller screens */
 @media (max-width: 1200px) {
     #contentArea {
-        grid-template-columns: auto;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    #contentArea {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -174,6 +196,19 @@ dialog::backdrop {
     font-size: 1.1rem;
 }
 
+/* Add Link button */
+#addLinkButton {
+    background: rgb(0, 102, 204);
+    padding: 0.5rem 1rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#addLinkButton:hover {
+    background-color: rgb(0, 82, 164);
+}
+
 #status p {
     display: none;
 }
@@ -181,7 +216,7 @@ dialog::backdrop {
 form {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.5rem;
+    gap: 0.1rem;
     width: 100%;
 }
 
@@ -189,8 +224,9 @@ fieldset {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
     border: none;
+    padding: 0;
 }
 
 /* Upload fieldset spans full width */
@@ -201,18 +237,18 @@ fieldset {
 /* Basic Info section spans full width */
 fieldset:has(select[name="spotType"]) {
     grid-column: 1 / -1;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 /* Address spans full width */
 fieldset:has(input[name="address"]) {
     grid-column: 1 / -1;
-    width: 100%;
 }
 
 /* Name spans full width */
 fieldset:has(input[name="name"]) {
     grid-column: 1 / -1;
-    width: 100%;
 }
 
 /* Contact section */
@@ -229,6 +265,23 @@ fieldset:has(input[name="hasWifi"]) {
 
 legend {
     text-align: left;
+    display: block;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    margin-left: 0;
+    padding-top: 1.5rem;
+    padding-left: 0;
+    font-weight: 600;
+    font-size: 1.1rem;
+    grid-column: 1 / -1;
+}
+
+/* Amenities fieldset - 2 column layout for checkboxes */
+fieldset:has(input[name="hasWifi"]) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem 1.5rem;
 }
 
 textarea {
@@ -279,6 +332,18 @@ input,
 select,
 option {
     padding: 0.5rem;
+}
+
+/* Make text inputs and selects consistent width */
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+select {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 0.5rem;
+    border-radius: 1rem;
+    border: 1px solid #ccc;
 }
 
 /* Range slider doesn't need padding on the sides */
@@ -338,6 +403,32 @@ textarea:user-invalid+.validation {
     color: #333;
 }
 
+/* Color cards by spot type */
+.item-card[data-spottype="cafe"] {
+    background: #FFF3E0;
+    border: 2px solid #FF9800;
+}
+
+.item-card[data-spottype="library"] {
+    background: #E3F2FD;
+    border: 2px solid #2196F3;
+}
+
+.item-card[data-spottype="park"] {
+    background: #E8F5E9;
+    border: 2px solid #4CAF50;
+}
+
+.item-card[data-spottype="co-working space"] {
+    background: #F3E5F5;
+    border: 2px solid #9C27B0;
+}
+
+.item-card[data-spottype="other"] {
+    background: #FCE4EC;
+    border: 2px solid #E91E63;
+}
+
 .item-heading {
     display: flex;
     flex-direction: row;
@@ -359,14 +450,14 @@ textarea:user-invalid+.validation {
 .item-info {
     width: 100%;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    align-items: start;
     justify-content: start;
-    gap: 1rem;
+    gap: 0.5rem;
 }
 
 .item-info p {
-    margin: 0.5rem 0;
+    margin: 0;
 }
 
 section.breed,
@@ -504,20 +595,108 @@ meter::-webkit-meter-even-less-good-value {
     justify-content: flex-end;
 }
 
+.item-timestamps {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    font-size: 0.85rem;
+    color: #888;
+    flex-grow: 1;
+}
+
+.item-footer {
+    display: flex;
+    width: 100%;
+    margin-top: 1rem;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
 .edit-btn {
-    background: rgb(3, 136, 3);
+    background: transparent;
+    border: 1px solid #666;
+    color: #666;
+    font-family: "Cabin", sans-serif;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition: all 0.2s;
 }
 
 .edit-btn:hover {
-    background-color: rgb(3, 103, 3);
+    background-color: #f5f5f5;
+    border-color: #333;
+    color: #333;
 }
 
 .delete-btn {
-    background: rgb(211, 47, 47);
+    background: transparent;
+    border: 1px solid #666;
+    color: #666;
+    font-family: "Cabin", sans-serif;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition: all 0.2s;
 }
 
 .delete-btn:hover {
-    background-color: rgb(183, 28, 28);
+    background-color: #f5f5f5;
+    border-color: #333;
+    color: #333;
+}
+
+/* Feature/Amenity tags styling */
+.item-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 1rem 0;
+    width: 100%;
+}
+
+.feature {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    border: 1.5px solid #666;
+    border-radius: 1rem;
+    font-size: 0.9rem;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.item-details-hidden {
+    display: none;
+    margin-top: 1rem;
+}
+
+.item-details-hidden.expanded {
+    display: block;
+}
+
+.item-details-hidden p {
+    margin: 0.5rem 0;
+}
+
+.more-details-btn {
+    background: transparent;
+    border: none;
+    color: #666;
+    font-family: "Cabin", sans-serif;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition: all 0.2s;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.more-details-btn:hover {
+    background-color: #f5f5f5;
+    border-color: #333;
+    color: #333;
 }
 
 /* Upload Area Styles */

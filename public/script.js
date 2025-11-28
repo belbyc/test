@@ -109,6 +109,8 @@ myForm.addEventListener('submit', async event => {
 createButton.addEventListener('click', () => {
     formHeading.textContent = '📍 Add Study Spot'
     myForm.reset()
+    // Explicitly clear the hidden ID field
+    document.getElementById('id').value = ''
     resetFormUI()
     formDialog.showModal()
 })
@@ -252,13 +254,13 @@ const renderItem = (item) => {
     div.setAttribute('data-id', item.id)
     div.setAttribute('data-spottype', item.spotType.toLowerCase())
 
-    const imageHTML = item.imageUrl ?
-        `<div class="item-image-area" style="background: url(${item.imageUrl});">
+    const imageURL = item.imageUrl || 'assets/placeholder.jpg'
+    const imageHTML = 
+        `<div class="item-image-area" style="background: url(${imageURL});">
             <div class="item-image-container">
-                <img src="${item.imageUrl}" alt="${item.name}" class="item-image" />
+                <img src="${imageURL}" alt="${item.name}" class="item-image" />
             </div>
         </div>`
-        : ''
 
     const linksHTML = item.links ? (() => {
         try {
@@ -299,8 +301,8 @@ const renderItem = (item) => {
         </div>
 
         <div class="item-details-hidden">
-            ${item.hours ? `<p><strong>⏰ Hours:</strong> ${item.hours}</p>` : ''}
-            ${item.phoneNumber ? `<p><strong>📞 Phone:</strong> ${item.phoneNumber}</p>` : ''}
+            ${item.hours ? `<p><strong>Hours:</strong> ${item.hours}</p>` : ''}
+            ${item.phoneNumber ? `<p><strong>Phone:</strong> ${item.phoneNumber}</p>` : ''}
             ${linksHTML}
         </div>
 
@@ -373,6 +375,8 @@ const getData = async () => {
 // Revert to the default form title on reset
 myForm.addEventListener('reset', () => {
     formHeading.textContent = '📍 Add Study Spot'
+    // Explicitly clear the hidden ID field
+    document.getElementById('id').value = ''
     const imagePreview = document.querySelector('#imagePreview')
     if (imagePreview) {
         imagePreview.setAttribute('src', 'assets/photo.svg')

@@ -11,7 +11,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: white;
+    background-color:  #ffffff;
 }
 
 /* Typekit font for headings */
@@ -104,39 +104,41 @@ header ul {
 
 button {
     border: 0;
-    font-weight: 700;
+    font-weight: 400;
     padding: 0.5rem 1rem;
     border-radius: 1rem;
-    color: white;
+    color: #555775;
     cursor: pointer;
+    font-family: "elizeth-condensed", serif;
+    font-style: normal;
 }
 
 button.save,
 #createButton,
 #browseButton {
-    background: rgb(3, 136, 3);
+    background: #C3C3F2;
 }
 
 button.save:hover,
 #createButton:hover,
 #browseButton:hover {
-    background-color: rgb(3, 103, 3);
+    background-color: #A9A5D8;
 }
 
 button.cancel {
-    background: rgb(134, 134, 134);
+    background: #D3D3D3;
 }
 
 button.cancel:hover {
-    background: rgb(101, 101, 101);
+    background: #B3B3B3;
 }
 
 #removeImageButton {
-    background: rgb(211, 47, 47);
+    background: #f48f8f;
 }
 
 #removeImageButton:hover {
-    background-color: rgb(183, 28, 28);
+    background-color: #f86363;
 }
 
 
@@ -144,9 +146,11 @@ button.cancel:hover {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
+    row-gap: 5rem;
     padding: 0 6rem;
     width: 100%;
     box-sizing: border-box;
+    align-items: start;
 }
 
 /* Responsive layout for smaller screens */
@@ -223,7 +227,7 @@ dialog::backdrop {
 
 /* Add Link button */
 #addLinkButton {
-    background: rgb(0, 102, 204);
+    background: rgb(109, 182, 255);
     padding: 0.5rem 1rem;
     height: 100%;
     display: flex;
@@ -232,6 +236,7 @@ dialog::backdrop {
 
 #addLinkButton:hover {
     background-color: rgb(0, 82, 164);
+    color: white;
 }
 
 #status p {
@@ -353,7 +358,7 @@ input[type=checkbox] {
 
 /* Set accent colour for inputs. */
 input {
-    accent-color: rgb(3, 136, 3);
+    accent-color: #C3C3F2;
 }
 
 /* Style default padding for form elements */
@@ -416,13 +421,13 @@ textarea:user-invalid+.validation {
 .item-card {
     border-radius: 1rem;
     padding: 1.5rem;
-    margin: 1rem 0;
+    margin: 0;
     background: #ffffff66;
     display: flex;
     flex-direction: column;
     align-items: start;
-    justify-content: center;
-    gap: 0.5rem;
+    justify-content: space-between;
+    gap: 0.2rem;
     text-align: left;
 }
 
@@ -432,30 +437,41 @@ textarea:user-invalid+.validation {
     color: #333;
 }
 
+.item-type {
+    font-family: "elizeth-condensed", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
 /* Color cards by spot type */
 .item-card[data-spottype="cafe"] {
-    background: #FFF3E0;
-    border: 2px solid #FF9800;
+    background: #FFCE9F;
+    border: 2px solid #FFAD5C;
+    box-shadow: 0 4px 10px rgba(255, 173, 92, 0.3);
 }
 
 .item-card[data-spottype="library"] {
-    background: #E3F2FD;
-    border: 2px solid #2196F3;
+    background: #A5D1D9;
+    border: 2px solid #72A9B3;
+    box-shadow: 0 4px 10px rgba(114, 169, 179, 0.3);
 }
 
 .item-card[data-spottype="park"] {
-    background: #E8F5E9;
-    border: 2px solid #4CAF50;
+    background: #AAD19A;
+    border: 2px solid #80B06D;
+    box-shadow: 0 4px 10px rgba(128, 176, 109, 0.3);
 }
 
 .item-card[data-spottype="co-working space"] {
-    background: #F3E5F5;
-    border: 2px solid #9C27B0;
+    background: #FBAFB8;
+    border: 2px solid #FF8875;
+    box-shadow: 0 4px 10px rgba(255, 136, 117, 0.3);
 }
 
 .item-card[data-spottype="other"] {
-    background: #FCE4EC;
-    border: 2px solid #E91E63;
+    background: #D9BEA5;
+    border: 2px solid #8D5B4C;
+    box-shadow: 0 4px 6px rgba(141, 91, 76, 0.3);
 }
 
 .item-heading {
@@ -638,15 +654,36 @@ meter::-webkit-meter-even-less-good-value {
 .item-footer {
     display: flex;
     width: 100%;
-    margin-top: 1rem;
     align-items: flex-end;
     gap: 1rem;
 }
 
+.item-card[data-spottype="cafe"] .item-timestamps {
+    color: #FFAD5C;
+}
+
+.item-card[data-spottype="library"] .item-timestamps {
+    color: #72A9B3;
+}
+
+.item-card[data-spottype="park"] .item-timestamps {
+    color: #80B06D;
+}
+
+.item-card[data-spottype="co-working space"] .item-timestamps {
+    color: #FF8875;
+}
+
+.item-card[data-spottype="other"] .item-timestamps {
+    color: #8D5B4C;
+}
+
+
+
 .edit-btn {
-    background: transparent;
-    border: 1px solid #666;
-    color: #666;
+    background: #C3C3F2;
+    border: 1px solid #555775;
+    color: #555775;
     font-family: "Cabin", sans-serif;
     padding: 0.5rem 1rem;
     cursor: pointer;
@@ -655,15 +692,15 @@ meter::-webkit-meter-even-less-good-value {
 }
 
 .edit-btn:hover {
-    background-color: #f5f5f5;
-    border-color: #333;
-    color: #333;
+    background-color: #A9A5D8;
+    border-color: #A9A5D8;
+    color: #555775;
 }
 
 .delete-btn {
-    background: transparent;
-    border: 1px solid #666;
-    color: #666;
+    background: hsl(0, 73%, 84%);
+    border: 1px solid #555775;
+    color: #555775;
     font-family: "Cabin", sans-serif;
     padding: 0.5rem 1rem;
     cursor: pointer;
@@ -682,23 +719,23 @@ meter::-webkit-meter-even-less-good-value {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
-    margin: 1rem 0;
+    margin: 0.25rem 0;
     width: 100%;
 }
 
 .feature {
     display: inline-block;
     padding: 0.4rem 0.8rem;
-    border: 1.5px solid #666;
+    border: 1.5px solid #9791c2;
     border-radius: 1rem;
     font-size: 0.9rem;
-    background-color: #f5f5f5;
+    background-color: #e3e0ff;
     color: #333;
 }
 
 .item-details-hidden {
     display: none;
-    margin-top: 1rem;
+    margin-top: 0.25rem;
 }
 
 .item-details-hidden.expanded {
@@ -709,16 +746,30 @@ meter::-webkit-meter-even-less-good-value {
     margin: 0.5rem 0;
 }
 
+.item-links {
+    background-color: transparent;
+    /* padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem; */
+}
+
+.item-links a {
+    color: #f0fb8d;
+    text-decoration: none;
+}
+
 .more-details-btn {
     background: transparent;
     border: none;
-    color: #666;
-    font-family: "Cabin", sans-serif;
+    color: #333;
+    font-family: "elizeth-condensed", serif;
+    font-weight: 400;
+    font-style: normal;
     padding: 0;
     cursor: pointer;
     border-radius: 0.25rem;
     transition: all 0.2s;
-    margin-top: 1rem;
+    margin-top: 0.25rem;
     font-size: 0.9rem;
 }
 
@@ -790,7 +841,8 @@ meter::-webkit-meter-even-less-good-value {
 
 .item-image-area {
     width: 100%;
-    height: 200px;
+    max-height: 200px;
+    min-height: 100px;
     border-radius: 8px 8px 0 0;
     margin-bottom: 10px;
 
@@ -814,6 +866,9 @@ meter::-webkit-meter-even-less-good-value {
 }
 
 .item-card {
-    border-radius: 8px;
+    border-radius: 1rem;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }

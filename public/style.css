@@ -21,6 +21,31 @@ h1, h2, .item-card h3 {
     font-style: normal;
 }
 
+h1 {
+    font-size: 6rem;
+    margin: 0;
+    padding: 0;
+    color: #555775;
+}
+
+h4 {
+    font-family: "elizeth-condensed", serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: #555775;
+    margin: 0.25rem 0;
+}
+
+h5 {
+    font-family: "elizeth-condensed", serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1rem;
+    color: #555775;
+    margin: 0.25rem 0;
+}
+
 main {
     padding: 0 2rem;
     max-width: 1400px;
@@ -68,7 +93,7 @@ footer {
 
 header p,
 header ul {
-    margin: 1rem;
+    margin: 0.1rem;
 }
 
 #intro {
@@ -191,7 +216,7 @@ dialog::backdrop {
 
 /* Create button */
 #createButton {
-    margin: 2rem auto;
+    margin: 2rem 6rem 2rem auto;
     padding: 1rem 2rem;
     font-size: 1.1rem;
 }
@@ -211,6 +236,10 @@ dialog::backdrop {
 
 #status p {
     display: none;
+}
+
+#readyStatus {
+    display: none !important;
 }
 
 form {

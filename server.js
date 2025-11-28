@@ -4,6 +4,17 @@ import express from 'express'
 // Initialize Express app
 const app = express()
 
+// Enable CORS for all routes
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Accept')
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200)
+    }
+    next()
+})
+
 // Serve static files from /public folder (useful when running Node locally, optional on Vercel).
 app.use(express.static('public'))
 // Define index.html as the root explicitly (useful on Vercel, optional when running Node locally).
